@@ -1,0 +1,1118 @@
+% !TeX program = xelatex
+\documentclass[a4paper,nofonts,sfsidenotes]{tufte-handout}
+
+\usepackage[british]{babel}
+\usepackage{fontspec}
+\setmainfont{Minion Pro}[
+  UprightFont={Minion Pro},
+  ItalicFont={Minion Pro Italic},
+  BoldFont={Minion Pro Semibold},
+  BoldItalicFont={Minion Pro Semibold Italic},
+  Ligatures=TeX,
+  Numbers={OldStyle,Proportional}
+]
+\usepackage[semibold,lining]{sourcesans}
+\usepackage{microtype}
+\usepackage[table]{xcolor}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage{needspace}
+\usepackage{csquotes}
+\usepackage{ragged2e}
+\usepackage[most]{tcolorbox}
+\usetikzlibrary{arrows.meta,positioning}
+
+\renewcommand{\smallcaps}[1]{{\scshape #1}}
+
+\title{Logos, Pathos and Ethos}
+\author{Vish Vishvanath}
+\date{13 September 2026}
+\newcommand{\docversion}{1.0}
+
+\hypersetup{
+  pdftitle={Logos, Pathos and Ethos},
+  pdfauthor={Vish Vishvanath},
+  pdfsubject={A concise guide to reasoning and persuasion, version \docversion},
+  pdfkeywords={logos, pathos, ethos, rhetoric, version \docversion}
+}
+
+\definecolor{Ink}{HTML}{24272B}
+\definecolor{MutedInk}{HTML}{60666C}
+\definecolor{RuleLight}{HTML}{C7CDD2}
+\definecolor{Panel}{HTML}{F4F3EF}
+\definecolor{HeaderPanel}{HTML}{E8EAEC}
+\definecolor{LogosBlue}{HTML}{315F7D}
+\definecolor{PathosBurgundy}{HTML}{8A4050}
+\definecolor{EthosGreen}{HTML}{416B57}
+\definecolor{ExerciseGold}{HTML}{9A7134}
+\definecolor{FailureRed}{HTML}{9A4B43}
+
+\color{Ink}
+\AtBeginDocument{%
+  \setlength{\parindent}{0pt}%
+  \setlength{\parskip}{0.34\baselineskip}%
+}
+\setlist[enumerate]{
+  label=\arabic*.,
+  font=\sffamily\bfseries\footnotesize\color{MutedInk},
+  leftmargin=*,
+  labelsep=0.7em,
+  itemsep=0.16\baselineskip,
+  topsep=0.22\baselineskip,
+  parsep=0pt,
+  partopsep=0pt
+}
+\newlist{questionlist}{enumerate}{1}
+\setlist[questionlist]{
+  label=\arabic*.,
+  font=\sffamily\bfseries\footnotesize\color{MutedInk},
+  leftmargin=*,
+  labelsep=0.7em,
+  itemsep=0.16\baselineskip,
+  topsep=0pt,
+  parsep=0pt,
+  partopsep=0pt
+}
+\newlist{exercisequestions}{enumerate}{1}
+\setlist[exercisequestions]{
+  label=\arabic*.,
+  font=\sffamily\bfseries\small\color{ExerciseGold},
+  leftmargin=*,
+  labelsep=0.7em,
+  itemsep=0.65\baselineskip,
+  topsep=0.25\baselineskip,
+  parsep=0pt,
+  partopsep=0pt
+}
+\newlist{choices}{enumerate}{1}
+\setlist[choices]{
+  label=\Alph*.,
+  font=\sffamily\bfseries\footnotesize\color{MutedInk},
+  leftmargin=2.2em,
+  labelsep=0.6em,
+  itemsep=0.08\baselineskip,
+  topsep=0.15\baselineskip,
+  parsep=0pt,
+  partopsep=0pt
+}
+\setlist[description]{
+  font=\sffamily\bfseries,
+  leftmargin=5.7em,
+  labelwidth=5em,
+  labelsep=0.7em,
+  itemsep=0.18\baselineskip,
+  topsep=0.18\baselineskip
+}
+
+\newcommand{\masthead}{%
+  \begin{fullwidth}
+    {\sffamily\bfseries\footnotesize\color{ExerciseGold}\textls[110]{EXTERNAL MEMORANDUM}}\par
+    \vspace{0.2\baselineskip}
+    {\fontsize{25}{28}\selectfont\bfseries Logos, Pathos \& Ethos}\par
+    {\large\itshape\color{MutedInk}A concise guide to reasoning and persuasion}\par
+    \vspace{0.5\baselineskip}
+    {\color{ExerciseGold}\rule{\dimexpr\linewidth-1pt\relax}{1pt}}\par
+    \vspace{0.3\baselineskip}
+    {\sffamily\small\color{MutedInk}Vish Vishvanath\hfill Version \docversion\hfill 13 September 2026}
+  \end{fullwidth}
+}
+
+\newcommand{\rhetoricsection}[3]{%
+  \Needspace{7\baselineskip}
+  \par\addvspace{0.8\baselineskip}
+  \begin{fullwidth}
+    {\color{#3}\rule{\linewidth}{0.85pt}}\par
+    \vspace{0.2\baselineskip}
+    {\sffamily\bfseries\large\color{#3}\textls[75]{\MakeUppercase{#1}}}%
+    \hspace{0.75em}{\large\itshape\color{Ink}#2}
+  \end{fullwidth}
+  \vspace{0.1\baselineskip}
+}
+
+\newcommand{\subhead}[1]{%
+  \Needspace{3\baselineskip}
+  \par\addvspace{0.72\baselineskip}
+  {\sffamily\bfseries\small\color{MutedInk}\textls[45]{\MakeUppercase{#1}}}\par\nobreak
+  \vspace{-0.12\baselineskip}
+}
+
+\newtcolorbox{examplebox}[2][EXAMPLE]{
+  enhanced,
+  breakable,
+  colback=Panel,
+  colframe=#2,
+  boxrule=0pt,
+  leftrule=1.4pt,
+  arc=0pt,
+  boxsep=0pt,
+  left=8pt,
+  right=8pt,
+  top=4pt,
+  bottom=5pt,
+  before skip=4pt,
+  after skip=5pt,
+  title={#1},
+  fonttitle=\sffamily\bfseries\footnotesize,
+  coltitle=#2,
+  attach title to upper={\par\vspace{2pt}},
+  before upper={\setlength{\parindent}{0pt}}
+}
+
+\newtcolorbox{takeawaybox}[2][KEY IDEA]{
+  enhanced,
+  breakable,
+  colback=Panel,
+  colframe=#2,
+  boxrule=0.6pt,
+  arc=0pt,
+  boxsep=0pt,
+  left=9pt,
+  right=9pt,
+  top=5pt,
+  bottom=6pt,
+  before skip=4pt,
+  after skip=6pt,
+  title={#1},
+  fonttitle=\sffamily\bfseries\footnotesize,
+  coltitle=#2,
+  attach title to upper={\par\vspace{3pt}},
+  before upper={\setlength{\parindent}{0pt}}
+}
+
+\newtcolorbox{casebox}[2][CASE]{
+  enhanced,
+  breakable,
+  colback=Panel,
+  colframe=#2,
+  colbacktitle=#2!12,
+  boxrule=0.55pt,
+  arc=0pt,
+  boxsep=0pt,
+  left=9pt,
+  right=9pt,
+  top=7pt,
+  bottom=8pt,
+  toptitle=3.5pt,
+  bottomtitle=3.5pt,
+  before skip=6pt,
+  after skip=8pt,
+  title={#1},
+  fonttitle=\sffamily\bfseries\small,
+  coltitle=#2
+}
+
+\newcolumntype{L}[1]{>{\RaggedRight\setlength{\parindent}{0pt}\arraybackslash}p{#1}}
+\newcolumntype{Y}{>{\RaggedRight\setlength{\parindent}{0pt}\arraybackslash}X}
+\newcommand{\tableheaderstrut}{\rule[-0.38\baselineskip]{0pt}{1.2\baselineskip}}
+\newcommand{\tablelabel}[1]{{%
+  \rule[-0.3\baselineskip]{0pt}{1.55\baselineskip}%
+  \noindent\sffamily\bfseries\small #1%
+}}
+\newcommand{\rhetoriclabel}[2]{{\sffamily\bfseries\color{#1}#2}}
+\newcommand{\chainlabel}[2]{{\sffamily\bfseries\small\color{#1}#2}\par\smallskip}
+\newcommand{\chaincontent}[3]{%
+  \begin{minipage}[t][4.6\baselineskip][t]{0.175\linewidth}
+    \chainlabel{#1}{#2}#3
+  \end{minipage}%
+}
+\tikzset{
+  chainbox/.style={
+    draw=LogosBlue,
+    line width=0.55pt,
+    rounded corners=1.5pt,
+    inner xsep=7pt,
+    inner ysep=6pt,
+    align=left
+  },
+  chainarrow/.style={
+    -{Stealth[length=5pt,width=4pt]},
+    draw=LogosBlue,
+    line width=0.9pt
+  }
+}
+\newcommand{\fourstepchain}[9]{%
+  \begin{fullwidth}
+  \small
+  \begin{tikzpicture}[node distance=0.032\linewidth]
+    \node[chainbox,draw=#1,fill=#1!8] (claim) {
+      \chaincontent{#1}{#2}{#3}
+    };
+    \node[chainbox,draw=#1,fill=#1!12,right=of claim] (evidence) {
+      \chaincontent{#1}{#4}{#5}
+    };
+    \node[chainbox,draw=#1,fill=#1!16,right=of evidence] (reasoning) {
+      \chaincontent{#1}{#6}{#7}
+    };
+    \node[chainbox,draw=#1,fill=#1!20,right=of reasoning] (conclusion) {
+      \chaincontent{#1}{#8}{#9}
+    };
+    \draw[chainarrow,draw=#1] (claim.east) -- (evidence.west);
+    \draw[chainarrow,draw=#1] (evidence.east) -- (reasoning.west);
+    \draw[chainarrow,draw=#1] (reasoning.east) -- (conclusion.west);
+  \end{tikzpicture}
+  \end{fullwidth}
+}
+
+\begin{document}
+\enlargethispage{6.5\baselineskip}
+
+\masthead
+
+\vspace{0.6\baselineskip}
+{\large Aristotle described three main ways people persuade one another.%
+\footnote{In Aristotle's \emph{Rhetoric}, logos, pathos and ethos are distinct ways of making a case, but effective persuasion commonly combines all three.}
+These are useful for analysing speeches and advertising, learning how to make a sound argument and recognizing attempts to influence us.}
+
+\vspace{0.45\baselineskip}
+\begin{fullwidth}
+\footnotesize
+\setlength{\tabcolsep}{6pt}
+\renewcommand{\arraystretch}{1}
+\setlength{\arrayrulewidth}{0.4pt}
+\arrayrulecolor{RuleLight}
+\begin{tabularx}{\linewidth}{|L{0.15\linewidth}|*{3}{Y|}}
+\hline
+\cellcolor{HeaderPanel}\tableheaderstrut &
+  \cellcolor{HeaderPanel}\rhetoriclabel{LogosBlue}{LOGOS} &
+  \cellcolor{HeaderPanel}\rhetoriclabel{PathosBurgundy}{PATHOS} &
+  \cellcolor{HeaderPanel}\rhetoriclabel{EthosGreen}{ETHOS} \\
+\hline
+\rowcolor{white}
+\tablelabel{Meaning} & Logic and reason & Emotion & Credibility and character \\
+\hline
+\rowcolor{Panel}
+\tablelabel{Main question} &
+  Does this make sense? &
+  How is this making me feel? &
+  Why should I trust this person? \\
+\hline
+\rowcolor{white}
+\tablelabel{Common tools} &
+  Facts, evidence, examples, cause and effect &
+  Fear, sympathy, humour, pride, anger and hope &
+  Expertise, experience, reputation and honesty \\
+\hline
+\rowcolor{Panel}
+\tablelabel{Weakness} &
+  Evidence can be selective or misleading &
+  Feeling can overwhelm judgment &
+  Authority can be false or irrelevant \\
+\hline
+\end{tabularx}
+\end{fullwidth}
+
+\rhetoricsection{Logos}{The argument}{LogosBlue}
+
+Logos is an appeal to \textbf{reason}: it asks whether the conclusion follows from the evidence.\footnote{A logically valid argument can still have a false conclusion if one of its premises is false. Good reasoning therefore tests both the structure of the argument and the truth of its evidence.}
+
+\begin{examplebox}{LogosBlue}
+\enquote{School should start later: teenagers tend to sleep later
+biologically, so early starts reduce sleep and may impair learning.}
+\end{examplebox}
+
+\subhead{Questions to ask}
+\begin{questionlist}
+  \item What exactly is the claim?
+  \item What evidence supports it?
+  \item Does the evidence actually support the conclusion?
+  \item Are there other possible explanations?
+  \item Is anything important being left out?
+  \item What evidence would change my mind?
+\end{questionlist}
+
+\subhead{A successful reasoning chain}
+\fourstepchain
+  {LogosBlue}
+  {1\enspace CLAIM}{School should start later.}
+  {2\enspace EVIDENCE}{Teenagers tend to sleep later biologically.}
+  {3\enspace REASONING}{Early starts therefore reduce average sleep.}
+  {4\enspace CONCLUSION}{A later start may improve alertness and learning.}
+
+\subhead{An unsuccessful reasoning chain}
+\fourstepchain
+  {FailureRed}
+  {1\enspace CLAIM}{School should start later.}
+  {2\enspace WEAK EVIDENCE}{My friend dislikes mornings.}
+  {3\enspace FAULTY INFERENCE}{Anything disliked must be harmful.}
+  {4\enspace OVERREACH}{School should start at noon for everyone.}
+
+\newpage
+\rhetoricsection{Pathos}{The feeling}{PathosBurgundy}
+
+Pathos is an appeal to \textbf{emotion}.
+
+\begin{examplebox}{PathosBurgundy}
+\enquote{Look at these sad and hungry abandoned animals currently at our animal shelter.}
+\end{examplebox}
+
+Emotion is not automatically dishonest. It is an important part of human judgment. The problem occurs when emotion is used \emph{instead of evidence}.\footnote{Psychologists sometimes call this the \emph{affect heuristic}: our immediate positive or negative feeling can become a shortcut for judging risk, truth or value. The feeling may be informative, but it is not proof.}
+
+\subhead{Two tests for emotional appeals}
+\begin{questionlist}
+\item{What emotion is this trying to produce in me?}
+
+\begin{takeawaybox}[NOTICE, THEN TEST]{PathosBurgundy}
+\vspace{0.45\baselineskip}
+\begingroup
+\small
+\renewcommand{\arraystretch}{1.35}
+\begin{tabularx}{\linewidth}{@{}*{3}{>{\RaggedRight\arraybackslash}X}@{}}
+fear & anger & sympathy \\
+disgust & excitement & pride \\
+belonging & envy & humour
+\end{tabularx}
+\endgroup
+\vspace{0.45\baselineskip}
+\end{takeawaybox}
+\item{Would the argument remain convincing if I were not feeling that emotion?}
+\end{questionlist}
+Advertising and political rhetoric frequently become easier to analyse once this question is asked.
+
+\subhead{A successful reasoning chain}
+\fourstepchain
+  {PathosBurgundy}
+  {1\enspace CLAIM}{The shelter needs donations.}
+  {2\enspace EMOTIONAL CUE}{Sad and hungry animals need help.}
+  {3\enspace FEELING}{Sympathy and urgency.}
+  {4\enspace ACTION}{You are more likely to donate.}
+
+\subhead{An unsuccessful reasoning chain}
+\fourstepchain
+  {FailureRed}
+  {1\enspace CLAIM}{The shelter needs donations.}
+  {2\enspace CLUMSY APPEAL}{Donate now or you do not care about animals.}
+  {3\enspace REACTION}{The guilt tactic feels manipulative.}
+  {4\enspace OUTCOME}{The audience distrusts the appeal.}
+
+\newpage
+\rhetoricsection{Ethos}{The speaker}{EthosGreen}
+
+Ethos concerns \textbf{why we should believe the person making the argument}.
+
+\begin{examplebox}{EthosGreen}
+\enquote{I have repaired this type of engine for thirty years.}
+\end{examplebox}
+
+Relevant expertise is sensible evidence, but authority needs examining.%
+\footnote{Expertise is domain-specific. A person may be highly reliable in one
+field and no better informed than anyone else in another. Independence,
+transparency and a relevant track record also matter.}
+
+\subhead{Questions to ask}
+\begin{questionlist}
+  \item Who is speaking?
+  \item What relevant expertise do they have?
+  \item How do we know they are reliable?
+  \item \textbf{Might they have something to gain?}%
+    \footnote{\textbf{Follow the incentives.} Someone need not care what happens to you
+    in order to sound confident, sympathetic or trustworthy.}
+  \item Are they speaking within their field of expertise?
+  \item Can their claims be independently checked?
+\end{questionlist}
+
+\begin{takeawaybox}{EthosGreen}
+{\sffamily\bfseries\footnotesize\color{EthosGreen}WHO BENEFITS? WHO BEARS THE RISK?}
+
+A speaker may benefit from persuading you while remaining untouched by the
+consequences. Ask whether their interests align with yours, whether they bear
+any cost if their advice is wrong, and who ultimately carries the risk.
+\end{takeawaybox}
+
+\begin{takeawaybox}[AN IMPORTANT DISTINCTION]{EthosGreen}
+\textbf{\enquote{This person is trustworthy} is not the same as
+\enquote{this claim is true}.}
+\end{takeawaybox}
+
+ Experts can be wrong.\footnote{I find that a good response to the appeal to authority argument begins with something like this: ``Well, then it should extremely easy for you to demonstrate. Name the <claim you are making> in <subject under discussion> and explain how it comes about, and how we laypersons can see it. Your CV is not evidence.''} Ask to see the evidence and reasoning: a CV is not evidence for this particular claim.
+
+\vspace{5.5\baselineskip}
+\subhead{A successful reasoning chain}
+\fourstepchain
+  {EthosGreen}
+  {1\enspace CLAIM}{This engine needs a new fuel pump.}
+  {2\enspace EXPERIENCE}{Thirty years repairing this type of engine.}
+  {3\enspace TRUST}{Relevant experience supports the diagnosis.}
+  {4\enspace CONCLUSION}{You are more likely to accept the repair advice.}
+
+\subhead{An unsuccessful reasoning chain}
+\fourstepchain
+  {FailureRed}
+  {1\enspace CLAIM}{This engine needs a new fuel pump.}
+  {2\enspace IRRELEVANT SOURCE}{I have driven cars for thirty years.}
+  {3\enspace FAULTY INFERENCE}{Long experience driving makes me a repair expert.}
+  {4\enspace OUTCOME}{The diagnosis remains unsupported.}
+
+\newpage
+\enlargethispage{2.5\baselineskip}
+\rhetoricsection{A practical exercise}{What is missing?}{ExerciseGold}
+
+\subhead{Three Ways In, One Way Out}
+Persuasion enters through reason, emotion and trust; critical inquiry provides the exit. Take the nearest advert, speech, TikTok, newspaper headline or argument you can eavesdrop on and mark its components:
+
+\paragraph{In}
+\begin{enumerate}
+  \item \rhetoriclabel{LogosBlue}{LOGOS:} What reasons or evidence are offered?
+  \item \rhetoriclabel{PathosBurgundy}{PATHOS:} What am I encouraged to feel?
+  \item \rhetoriclabel{EthosGreen}{ETHOS:} Why am I encouraged to trust the speaker?
+\end{enumerate}
+
+\paragraph{Out}
+\begin{enumerate}
+  \item \rhetoriclabel{ExerciseGold}{MISSING:} What information would help me judge the claim?
+\end{enumerate}
+
+\subhead{Try it on a familiar claim}
+\begin{fullwidth}
+\begin{examplebox}[ADVERTISING CLAIM]{ExerciseGold}
+\begin{description}
+  \item[Advert] \enquote{Nine out of ten dentists recommend Brand X.}
+  \item[\rhetoriclabel{EthosGreen}{Ethos}] Dentists are presented as experts.
+  \item[\rhetoriclabel{LogosBlue}{Logos}] The claim appears to offer statistical evidence.
+  \item[\rhetoriclabel{PathosBurgundy}{Pathos}] \enquote{Surely, comrades, you do not want to neglect your teeth and be the laughing stock of your friends?}
+\end{description}
+\end{examplebox}
+\end{fullwidth}
+
+\subhead{Now interrogate what is absent}
+The most useful questions often concern the information that was not supplied: \footnote{A percentage without its denominator can be deceptive. Nine out of ten is strong evidence if ten people were sampled carefully, but weak evidence if respondents were selected or the question was framed to invite agreement. And that's before we get into statistical significance and small sample sizes. Small sample sizes are the scourge of arguments - you could easily argue that tortoises are faster than hares based on a single race. Try that over 200 races.}
+\begin{enumerate}
+  \item Nine out of ten \textbf{of how many dentists}?
+  \item What exactly were they asked?
+  \item Who paid for the survey?
+  \item \textbf{Who benefits, and who bears the risk?}
+  \item Did they recommend other brands too?
+\end{enumerate}
+
+\subhead{The lesson to remember}
+The goal is not to teach \enquote{Logos good; Pathos bad; Ethos suspicious}. Strong arguments usually contain \textbf{all three}.
+
+\begin{takeawaybox}[THE DEEPER LESSON]{ExerciseGold}
+\large
+Separate \textbf{what you are being asked to believe}, \textbf{how you are being made to feel}, and \textbf{why you are being asked to trust} the person saying it.
+\end{takeawaybox}
+
+Once someone learns to separate those three things, they become considerably harder to manipulate.
+
+\newpage
+\rhetoricsection{Practice}{From recognition to judgment}{ExerciseGold}
+
+Work through these exercises in order. The early questions have a best answer.
+The later ones require judgment because facts are incomplete, values conflict,
+and every available decision imposes risks on someone.
+
+\begin{takeawaybox}{ExerciseGold}
+Use the same \textbf{3+1 test} throughout:
+\textbf{What reasons are offered? What emotion is being encouraged? Why should
+the source be trusted? What is missing?}
+\end{takeawaybox}
+
+\subhead{Level 1 — Identify the appeal}
+
+Choose the best answer.
+
+\begin{exercisequestions}
+  \item \enquote{A randomised trial assigned 2,000 patients to two treatments.
+    Recovery was eight percentage points higher with Treatment A.}
+    Which appeal is primary?
+    \begin{choices}
+      \item Logos
+      \item Pathos
+      \item Ethos
+      \item None of the three
+    \end{choices}
+
+  \item \enquote{Imagine your child waiting alone in a cold, dark station
+    because the last bus was cancelled.}
+    Which appeal is primary?
+    \begin{choices}
+      \item Logos
+      \item Pathos
+      \item Ethos
+      \item Statistical inference
+    \end{choices}
+
+  \item \enquote{I have inspected suspension bridges for thirty years, and this
+    crack requires immediate attention.}
+    Which appeal is primary?
+    \begin{choices}
+      \item Logos
+      \item Pathos
+      \item Ethos
+      \item Popularity
+    \end{choices}
+
+  \item A famous actor recommends a heart medicine. What should be checked
+    first?
+    \begin{choices}
+      \item How many followers the actor has
+      \item Whether the actor has relevant expertise and a financial incentive
+      \item Whether the advert is emotionally moving
+      \item Whether the actor appears confident
+    \end{choices}
+
+  \item A council reports that complaints fell from four to two after a new
+    policy. Which missing fact matters most?
+    \begin{choices}
+      \item The colour of the report
+      \item Whether the periods, populations and reporting methods are comparable
+      \item Whether the mayor announced the result
+      \item Whether the policy has an attractive name
+    \end{choices}
+
+  \item \enquote{Nine out of ten dentists recommend Brand X} combines which two
+    appeals most directly?
+    \begin{choices}
+      \item Logos and ethos
+      \item Logos and pathos
+      \item Pathos and ethos
+      \item Pathos and humour
+    \end{choices}
+\end{exercisequestions}
+
+\rhetoricsection{Practice}{Diagnosing weak arguments}{FailureRed}
+
+\subhead{Level 2 — Name the fault}
+
+Choose the most important defect in each argument.
+
+\begin{exercisequestions}
+  \item \enquote{Either approve this safety bill today or admit that you do not
+    care whether children live or die.}
+    \begin{choices}
+      \item False dilemma reinforced by pathos
+      \item Valid deduction
+      \item Representative sampling
+      \item Relevant authority
+    \end{choices}
+
+  \item \enquote{The town installed cameras in March. Crime fell in April.
+    Therefore the cameras caused the fall.}
+    \begin{choices}
+      \item Equivocation
+      \item Treating sequence or correlation as proof of causation
+      \item Appeal to pity
+      \item Deduction from a universal rule
+    \end{choices}
+
+  \item \enquote{Three constituents wrote to oppose the proposal. The public
+    clearly rejects it.}
+    \begin{choices}
+      \item Hasty generalisation from a self-selected sample
+      \item Modus tollens
+      \item Appeal to relevant expertise
+      \item A controlled experiment
+    \end{choices}
+
+  \item \enquote{A Nobel Prize-winning physicist says this tax plan will
+    increase wages, so it must be true.}
+    \begin{choices}
+      \item The authority may be prestigious but irrelevant to the claim
+      \item Physics can never inform policy
+      \item Experts are always wrong outside laboratories
+      \item Tax plans cannot be evaluated
+    \end{choices}
+
+  \item A treatment increases recovery from 1\% to 2\%. An advert says it
+    \enquote{doubles the chance of recovery} but omits the absolute figures.
+    What is the main problem?
+    \begin{choices}
+      \item The relative change is false
+      \item The framing conceals the base rate and absolute effect
+      \item Percentages are never evidence
+      \item The sample must contain exactly one hundred people
+    \end{choices}
+\end{exercisequestions}
+
+\subhead{Level 3 — Logic and evidence puzzles}
+
+\begin{exercisequestions}
+  \item A reliable database follows this rule: \emph{if a permit is valid, its
+    record is green}. Sam's record is not green. What follows?
+    \begin{choices}
+      \item Sam's permit is not valid
+      \item Sam has never applied for a permit
+      \item Every green permit belongs to Sam
+      \item Nothing follows
+    \end{choices}
+
+  \item \emph{Only licensed drivers may operate the school bus.} Mira has a
+    licence. What may we conclude?
+    \begin{choices}
+      \item Mira operates the school bus
+      \item Mira is permitted by this rule, but may not actually operate the bus
+      \item Everyone with a licence operates a school bus
+      \item Mira is employed by the school
+    \end{choices}
+
+  \item A survey conducted at a demonstration finds that 82\% of respondents
+    oppose the policy being protested. What is the central difficulty?
+    \begin{choices}
+      \item The percentage is too precise
+      \item The sample is strongly selected and may not represent the public
+      \item Demonstrators are prohibited from answering surveys
+      \item A sample must include the entire population
+    \end{choices}
+
+  \item All emergency orders require either legislative approval or a declared
+    disaster. An order has no legislative approval, but a disaster has been
+    declared. Is the order necessarily lawful?
+    \begin{choices}
+      \item Yes; satisfying one stated requirement proves full legality
+      \item No; the rule states a necessary procedural condition, not every
+        condition of legality
+      \item Yes; emergency action cannot be reviewed
+      \item No; declarations of disaster are never valid
+    \end{choices}
+\end{exercisequestions}
+
+\enlargethispage{2\baselineskip}
+\subhead{A case-mix puzzle}
+
+Two hospitals report the following thirty-day survival figures:
+
+\begin{fullwidth}
+\small
+\setlength{\tabcolsep}{8pt}
+\renewcommand{\arraystretch}{1.35}
+\arrayrulecolor{RuleLight}
+\begin{tabularx}{\linewidth}{|L{0.18\linewidth}|Y|Y|Y|}
+\hline
+\rowcolor{HeaderPanel}
+\tableheaderstrut\textsf{\textbf{Hospital}} &
+  \textsf{\textbf{Routine cases}} &
+  \textsf{\textbf{High-risk cases}} &
+  \textsf{\textbf{All cases}} \\
+\hline
+\rowcolor{white}
+\tablelabel{Hospital A} & 90/100 (90\%) & 30/50 (60\%) & 120/150 (80\%) \\
+\hline
+\rowcolor{Panel}
+\tablelabel{Hospital B} & 19/20 (95\%) & 56/80 (70\%) & 75/100 (75\%) \\
+\hline
+\end{tabularx}
+\end{fullwidth}
+
+Hospital A has the better overall rate, while Hospital B has the better rate
+within \emph{each} risk category. What should an investigator conclude?
+
+\begin{choices}
+  \item Hospital A is unambiguously better
+  \item Hospital B is unambiguously better in every relevant respect
+  \item The overall figures alone settle the question
+  \item Case mix changes the aggregate result; comparison requires risk
+    adjustment and more evidence
+\end{choices}
+
+\newpage
+\rhetoricsection{Practice}{Mixed appeals and incomplete stories}{LogosBlue}
+
+\subhead{Level 4 — Annotate, challenge and repair}
+
+For each scenario:
+\begin{enumerate}
+  \item mark the logos, pathos and ethos;
+  \item state the principal claim in neutral language;
+  \item identify at least three missing facts or perspectives;
+  \item rewrite the argument so that its evidence and conclusion are
+    proportionate; and
+  \item state what evidence would change your mind.
+\end{enumerate}
+
+\begin{casebox}[SCENARIO A — THE BUS LANE]{LogosBlue}
+A traders' association shows photographs of three empty shops and says:
+\enquote{The new bus lane is destroying our high street. Remove it before the
+whole district dies.} It reports that sales fell 12\% after installation. The
+association does not show city-wide retail trends, pedestrian counts, rents,
+online sales, construction disruption or results from comparable streets.
+\end{casebox}
+
+\begin{casebox}[SCENARIO B — THE FOUNDER]{EthosGreen}
+A technology company's founder tells legislators:
+\enquote{I built this industry, so I know that regulation will destroy
+innovation.} The company funds the study he cites. Independent researchers
+agree that compliance has costs but disagree about their size and whether
+benefits exceed them.
+\end{casebox}
+
+\begin{casebox}[SCENARIO C — THE VIRAL CLIP]{PathosBurgundy}
+A twenty-second video of a frightening incident outside a school is viewed ten
+million times. A campaign demands permanent police deployment at every school.
+The clip is genuine, but no one provides the frequency of such incidents,
+comparisons with other risks, evidence about alternative safeguards, or the
+effects of permanent policing on different pupils.
+\end{casebox}
+
+\begin{casebox}[SCENARIO D — THE SUCCESS RATE]{ExerciseGold}
+A minister announces that a job programme is \enquote{proven to work} because
+70\% of participants found employment. Participation was voluntary, 68\% of
+eligible non-participants also found work, and the two groups differed in age,
+health and prior employment. The programme may still help, but the headline
+figure does not establish how much.
+\end{casebox}
+
+\newpage
+\rhetoricsection{Practice}{Decisions with no clean answer}{Ink}
+
+\subhead{Level 5 — Law, government and conflicting values}
+
+These cases are difficult because reasonable people can share the same facts
+and still rank rights, risks and obligations differently. For each case:
+
+\begin{enumerate}
+  \item separate empirical claims from moral, legal and political judgments;
+  \item give the strongest logos, pathos and ethos available to opposing sides;
+  \item identify incentives, conflicts of interest and absent stakeholders;
+  \item ask who benefits, who bears the risk and who can appeal;
+  \item propose a decision with safeguards, review criteria and a route for
+    correction; and
+  \item state the strongest objection to your own proposal.
+\end{enumerate}
+
+\begin{casebox}[CASE 1 — PRE-TRIAL DETENTION]{FailureRed}
+After several serious offences allegedly committed by people awaiting trial, a
+city proposes an algorithm to recommend detention without bail for those rated
+high risk. Officials say retrospective testing predicts rearrest better than
+judges alone. Civil-rights groups note that historical arrest data reflect
+unequal policing, detention can cost innocent people jobs and homes, and the
+vendor will not disclose the model. Releasing someone who causes grave harm and
+detaining someone who would not offend are both irreversible failures borne by
+different people.
+\end{casebox}
+
+\begin{casebox}[CASE 2 — ENCRYPTION AND LAWFUL ACCESS]{LogosBlue}
+After a deadly attack, investigators seek a legal power requiring messaging
+services to provide exceptional access to encrypted conversations when a court
+issues a warrant. Families argue that inaccessible evidence leaves victims
+without justice. Security engineers argue that an access mechanism usable by
+authorities may also be discovered or abused by criminals and hostile states.
+The government relies partly on classified evidence; companies benefit from a
+reputation for privacy; no design has been shown to eliminate both risks.
+\end{casebox}
+
+\newpage
+\rhetoricsection{Practice continued}{Institutional dilemmas}{Ink}
+
+\begin{casebox}[CASE 3 — WATER IN A SEVERE DROUGHT]{EthosGreen}
+A reservoir is at 30\% capacity. Long-standing law gives some farms senior
+rights; cities need drinking water; a treaty protects an Indigenous nation's
+share; minimum flows support fisheries and an endangered ecosystem. Cutting
+farms may bankrupt families and disrupt food supply. Cutting cities threatens
+health. Cutting river flows may cause irreversible ecological loss. Rainfall
+forecasts are uncertain, and every group can produce respected experts.
+\end{casebox}
+
+\begin{casebox}[CASE 4 — EMERGENCY POWERS]{PathosBurgundy}
+A fast-moving epidemic reaches several regions. The executive seeks twelve
+months of authority to restrict movement, redirect public spending and issue
+rules without prior legislative approval. Delay may cost lives; unchecked
+power may burden minorities, suppress protest and persist after the emergency.
+The legislature is slow and divided, courts act retrospectively, and the
+severity of the threat cannot yet be estimated confidently.
+\end{casebox}
+
+\begin{casebox}[CAPSTONE — DESIGN THE DECISION PROCESS]{ExerciseGold}
+Choose one of the four cases. Do not begin by choosing the policy outcome.
+Instead design a process that people who expect to lose could still regard as
+legitimate. Specify who decides, what evidence is public, which rights cannot
+be traded away, how minority interests are represented, when the decision
+expires, what triggers review, and what remedy exists when the policy causes
+unjustified harm.
+\end{casebox}
+
+\begin{takeawaybox}{ExerciseGold}
+The 3+1 test cannot make value conflicts disappear. Its purpose is to expose
+the argument, the emotional pressure, the claimed authority and the omissions
+\emph{before} power is exercised.
+\end{takeawaybox}
+
+\newpage
+\rhetoricsection{Answer notes}{Closed questions and open judgments}{ExerciseGold}
+
+\subhead{Level 1}
+
+\begin{enumerate}
+  \item \textbf{A — Logos.} The claim relies primarily on comparative evidence.
+  \item \textbf{B — Pathos.} The imagined scene is designed to produce concern.
+  \item \textbf{C — Ethos.} Relevant experience supports credibility.
+  \item \textbf{B.} Fame is not medical expertise; payment or sponsorship may
+    affect independence.
+  \item \textbf{B.} A change from four to two is uninterpretable without
+    comparable exposure, periods and reporting.
+  \item \textbf{A — Logos and ethos.} The number suggests evidence; dentists
+    supply authority.
+\end{enumerate}
+
+\subhead{Level 2}
+
+\begin{enumerate}
+  \item \textbf{A.} It excludes other positions and uses fear and guilt.
+  \item \textbf{B.} Temporal order does not isolate cameras as the cause.
+  \item \textbf{A.} Three self-selected writers cannot establish public opinion.
+  \item \textbf{A.} Achievement in physics does not settle an economic claim.
+  \item \textbf{B.} The relative claim is numerically true but hides a
+    one-percentage-point absolute increase.
+\end{enumerate}
+
+\subhead{Level 3}
+
+\begin{enumerate}
+  \item \textbf{A.} Given a reliable rule, this is modus tollens: valid implies
+    green; not green therefore implies not valid.
+  \item \textbf{B.} Licensing is necessary for operating the bus, not sufficient
+    proof that Mira operates it.
+  \item \textbf{B.} The sampling location selects people unusually likely to
+    oppose the policy.
+  \item \textbf{B.} Satisfying the stated either/or condition does not prove
+    compliance with every other legal requirement.
+  \item \textbf{D.} Hospital B has higher survival within both risk groups, while
+    Hospital A treats a much larger share of routine cases. Neither crude total
+    answers every quality question.
+\end{enumerate}
+
+\newpage
+\rhetoricsection{Answer notes continued}{How to assess the open exercises}{ExerciseGold}
+
+\subhead{Level 4}
+
+Good answers distinguish a vivid example from a representative pattern,
+identify who supplied each statistic, seek comparison groups and time trends,
+and reduce the certainty of the conclusion when causal evidence is weak. A
+repair should not simply reverse the original conclusion; it should make a
+claim no stronger than the evidence permits.
+
+\subhead{Level 5}
+
+The public-law cases have no answer key that can substitute for judgment. Two
+readers may reach different conclusions and both reason well. Assess the
+\emph{quality of the decision process} using this rubric:
+
+\begin{fullwidth}
+\small
+\setlength{\tabcolsep}{7pt}
+\renewcommand{\arraystretch}{1.35}
+\arrayrulecolor{RuleLight}
+\begin{tabularx}{\linewidth}{|L{0.23\linewidth}|Y|L{0.15\linewidth}|}
+\hline
+\rowcolor{HeaderPanel}
+\tableheaderstrut\textsf{\textbf{Criterion}} &
+  \textsf{\textbf{What a strong answer does}} &
+  \textsf{\textbf{Score}} \\
+\hline
+\rowcolor{white}
+\tablelabel{Claims and evidence} &
+  Separates facts, predictions, causal assumptions and value judgments. &
+  0–2 \\
+\hline
+\rowcolor{Panel}
+\tablelabel{Uncertainty} &
+  States what is unknown and avoids pretending that estimates are certainties. &
+  0–2 \\
+\hline
+\rowcolor{white}
+\tablelabel{Appeals} &
+  Identifies logos, pathos and ethos without assuming that emotion or authority
+  is automatically illegitimate. &
+  0–2 \\
+\hline
+\rowcolor{Panel}
+\tablelabel{Interests and risk} &
+  Identifies incentives, affected non-speakers, distributional effects and who
+  bears each kind of error. &
+  0–2 \\
+\hline
+\rowcolor{white}
+\tablelabel{Rights and constraints} &
+  Distinguishes outcomes that may be balanced from rights or duties treated as
+  firm limits. &
+  0–2 \\
+\hline
+\rowcolor{Panel}
+\tablelabel{Safeguards} &
+  Uses transparency, reasons, appeals, independent oversight, sunset clauses,
+  thresholds or staged implementation. &
+  0–2 \\
+\hline
+\rowcolor{white}
+\tablelabel{Reversibility} &
+  Prefers correctable experiments where possible and treats irreversible harms
+  with greater caution. &
+  0–2 \\
+\hline
+\rowcolor{Panel}
+\tablelabel{Counterargument} &
+  States the strongest objection fairly and changes the proposal in response. &
+  0–2 \\
+\hline
+\end{tabularx}
+\end{fullwidth}
+
+\begin{takeawaybox}{ExerciseGold}
+A strong answer need not reach a particular political conclusion. It must show
+why its evidence is relevant, which values control the decision, whose
+interests are at stake, and how mistakes can be detected and corrected.
+\end{takeawaybox}
+
+\newpage
+\rhetoricsection{Appendix}{Words, roots and relationships}{ExerciseGold}
+
+The relationships are direct, which makes the three terms easier to remember.
+The important wrinkle is that their English descendants have sometimes
+\textbf{narrowed or shifted in meaning}.
+
+\vspace{0.45\baselineskip}
+\begin{fullwidth}
+\footnotesize
+\setlength{\tabcolsep}{6pt}
+\renewcommand{\arraystretch}{1}
+\setlength{\arrayrulewidth}{0.4pt}
+\arrayrulecolor{RuleLight}
+\begin{tabularx}{\linewidth}{
+  |L{0.19\linewidth}
+  |L{0.25\linewidth}
+  |L{0.17\linewidth}
+  |Y|}
+\hline
+\rowcolor{HeaderPanel}
+\tableheaderstrut\textsf{\textbf{Greek root}} &
+  \textsf{\textbf{Basic Greek sense}} &
+  \textsf{\textbf{English descendant}} &
+  \textsf{\textbf{What happened}} \\
+\hline
+\rowcolor{white}
+\rule[-0.3\baselineskip]{0pt}{1.55\baselineskip}\textbf{λόγος — logos} &
+  word, account, reason, explanation &
+  \textbf{logic} &
+  Retained the sense of reasoning. \\
+\hline
+\rowcolor{Panel}
+\rule[-0.3\baselineskip]{0pt}{1.55\baselineskip}\textbf{ἦθος — ethos} &
+  character, disposition, customary behaviour &
+  \textbf{ethics} &
+  Developed into reasoning about good character and conduct. \\
+\hline
+\rowcolor{white}
+\rule[-0.3\baselineskip]{0pt}{1.55\baselineskip}\textbf{πάθος — pathos} &
+  experience, feeling, suffering &
+  \textbf{pathetic} &
+  Narrowed from arousing emotion to arousing pity, then often to pitiful or
+  contemptible. \\
+\hline
+\end{tabularx}
+\end{fullwidth}
+
+\subhead{Logos to logic}
+
+This is the most obvious relationship.
+
+Greek \textbf{logos} has a remarkably broad range of meanings: \emph{word,
+speech, account, explanation, reason, principle}. From it came
+\textbf{logikē}—roughly, \emph{the art concerned with reasoning}—and ultimately
+the English word \textbf{logic}.
+
+Rhetorical logos is not identical to logic, but they are close relatives:
+
+\begin{takeawaybox}{LogosBlue}
+\textbf{Logos:} \enquote{Here are the reasons you should believe me.}
+
+\textbf{Logic:} \enquote{Do those reasons actually follow?}
+\end{takeawaybox}
+
+That distinction is useful when teaching. An argument can \textbf{appeal to
+logos while containing bad logic}. Statistics, graphs and apparently rational
+explanations are still appeals to logos even when they are selective or
+misleading.
+
+\subhead{Ethos to ethics}
+
+This relationship is perhaps even more interesting.
+
+Greek \textbf{ethos} concerns \textbf{character, habit or disposition}:
+essentially, what sort of person someone is. \textbf{Ethikos} means
+\enquote{pertaining to character}, which gives us \textbf{ethics}.
+
+That makes Aristotle's rhetorical ethos much clearer than simply translating
+it as \enquote{authority}.
+
+\begin{takeawaybox}{EthosGreen}
+The question is not merely \enquote{Is this person an expert?}
+
+It is more fundamentally: \textbf{\enquote{What kind of person does the
+speaker appear to be?}}
+\end{takeawaybox}
+
+Do they seem knowledgeable, honest, fair, sensible, one of us, or to be acting
+in good faith? Ethics grows from the same territory: questions about
+\textbf{character and conduct}. The word \emph{ethos} also survives unchanged
+in English, as in \enquote{the ethos of the organisation}.
+
+\newpage
+\rhetoricsection{Appendix continued}{Pathos and its word family}{PathosBurgundy}
+
+\subhead{Pathos to pathetic}
+
+This one has undergone the biggest semantic journey.
+
+Greek \textbf{pathos} means something like \textbf{that which is experienced or
+suffered}, and consequently an \textbf{emotion, feeling or passion}. This is
+the source of Aristotle's rhetorical pathos: affecting the emotional state of
+an audience.
+
+\textbf{Pathetikos} meant \emph{capable of feeling} or \emph{capable of
+arousing emotion}. English \textbf{pathetic} therefore originally meant
+something much closer to \enquote{moving; emotionally affecting; arousing
+pity}. In nineteenth-century writing, \enquote{a pathetic scene} is a moving
+scene, especially one that evokes pity—not necessarily a bad one.
+
+\begin{takeawaybox}{PathosBurgundy}
+\centering
+\sffamily\small
+emotionally affecting
+\enspace$\longrightarrow$\enspace deserving pity
+\enspace$\longrightarrow$\enspace pitiful
+\enspace$\longrightarrow$\enspace feeble or contemptible
+\end{takeawaybox}
+
+Other descendants preserve more of the original connection with feeling:
+
+\begin{description}
+  \item[sympathy] \emph{syn} (\enquote{with}) + \emph{pathos}: feeling with.
+  \item[empathy] \emph{em/en} (\enquote{in}) + \emph{pathos}: feeling into.
+  \item[apathy] \emph{a-} (\enquote{without}) + \emph{pathos}: without feeling.
+  \item[antipathy] \emph{anti-} (\enquote{against}) + \emph{pathos}: feeling against.
+  \item[psychopathology / pathology] Originally concerned with suffering,
+    disease, or what happens to something.
+\end{description}
+
+\subhead{A mnemonic to remember}
+
+\begin{fullwidth}
+\small
+\setlength{\tabcolsep}{8pt}
+\renewcommand{\arraystretch}{1.45}
+\arrayrulecolor{RuleLight}
+\begin{tabularx}{\linewidth}{|Y|Y|Y|}
+\hline
+\cellcolor{LogosBlue!10}
+  \rhetoriclabel{LogosBlue}{LOGOS → LOGIC}\par Think &
+\cellcolor{EthosGreen!10}
+  \rhetoriclabel{EthosGreen}{ETHOS → ETHICS}\par Character &
+\cellcolor{PathosBurgundy!10}
+  \rhetoriclabel{PathosBurgundy}{PATHOS → PATHETIC}\par Feel \\
+\hline
+\end{tabularx}
+\end{fullwidth}
+
+\begin{takeawaybox}{PathosBurgundy}
+\textbf{Remember:} \emph{pathetic} originally meant emotionally moving, not
+\enquote{useless}.
+\end{takeawaybox}
+
+The etymology supplies a mnemonic rather than asking learners to memorise three arbitrary Greek words.
+
+\vspace{0.8\baselineskip}
+{\color{RuleLight}\rule{\linewidth}{0.6pt}}\par
+\vspace{0.4\baselineskip}
+{\sffamily\small\color{MutedInk}Logos for the head, pathos for the heart, ethos so nobody thinks you’re a charlatan.}
+
+\end{document}
